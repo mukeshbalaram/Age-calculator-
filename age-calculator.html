@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Discover your exact age in years, months, days, and more with our Advanced Age Calculator. Get fun insights like your zodiac sign, Chinese zodiac, life progress, and countdown to your next birthday. Fast, accurate, and user-friendly!">
+  <meta name="keywords" content="age calculator, zodiac sign, Chinese zodiac, life progress, birthday countdown, exact age calculator">
+  <meta name="author" content="Your Name or Brand Name">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Advanced Age Calculator">
+  <meta property="og:description" content="Calculate your exact age and get fun insights like zodiac signs, life progress, and more with our Advanced Age Calculator.">
+  <meta property="og:image" content="https://yourwebsite.com/age-calculator-thumbnail.jpg">
+  <meta property="og:url" content="https://yourwebsite.com/age-calculator">
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Advanced Age Calculator">
+  <meta name="twitter:description" content="Calculate your exact age and get fun insights like zodiac signs, life progress, and more with our Advanced Age Calculator.">
+  <meta name="twitter:image" content="https://yourwebsite.com/age-calculator-thumbnail.jpg">
+  <!-- Title -->
+  <title>Advanced Age Calculator - Calculate Your Exact Age with Fun Insights</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom Styles -->
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+  </style>
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Advanced Age Calculator",
+    "description": "Calculate your exact age and get fun insights like zodiac signs, life progress, and more.",
+    "url": "https://yourwebsite.com/age-calculator",
+    "applicationCategory": "Utilities",
+    "operatingSystem": "Web",
+    "screenshot": "https://yourwebsite.com/age-calculator-thumbnail.jpg"
+  }
+  </script>
+</head>
+<body class="bg-gradient-to-r from-blue-50 to-purple-50 min-h-screen flex items-center justify-center">
+  <div class="container mx-auto p-4">
+    <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden fade-in">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center">
+        <h1 class="text-4xl font-bold text-white">Advanced Age Calculator</h1>
+        <p class="text-lg text-blue-100 mt-2">Discover your age in detail and unlock fun insights!</p>
+      </div>
+
+      <!-- Form -->
+      <div class="p-8">
+        <form id="ageCalculatorForm" class="space-y-6">
+          <div>
+            <label for="birthDate" class="block text-lg font-medium text-gray-700">Enter Your Birth Date</label>
+            <input type="date" id="birthDate" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+          </div>
+          <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+            Calculate Age
+          </button>
+        </form>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="p-8 space-y-6 hidden">
+        <!-- Results will be displayed here -->
+      </div>
+    </div>
+
+    <!-- Description Section -->
+    <div class="max-w-2xl mx-auto mt-8 bg-white rounded-2xl shadow-2xl p-8 fade-in">
+      <h2 class="text-3xl font-bold text-blue-800 mb-4">Why Use Our Age Calculator?</h2>
+      <p class="text-gray-700 mb-4">
+        Our <strong>Advanced Age Calculator</strong> is more than just a tool to find out how old you are. It provides a comprehensive breakdown of your age in years, months, days, hours, minutes, and seconds. But that's not all! Here's what makes our calculator unique:
+      </p>
+      <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li><strong>Zodiac Sign</strong>: Discover your astrological sign based on your birth date.</li>
+        <li><strong>Chinese Zodiac</strong>: Find out which animal represents your birth year in the Chinese zodiac.</li>
+        <li><strong>Life Progress</strong>: See what percentage of your life you've completed based on average life expectancy.</li>
+        <li><strong>Next Birthday Countdown</strong>: Know exactly how many days are left until your next birthday.</li>
+        <li><strong>Historical Insights</strong>: Learn about famous people born on your birthday and historical events that happened on that day.</li>
+      </ul>
+      <p class="text-gray-700 mt-4">
+        Whether you're curious about your age on a specific date or want to compare ages with friends, our calculator is fast, accurate, and easy to use. Perfect for anyone who loves personalized insights and fun trivia!
+      </p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    document.getElementById('ageCalculatorForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const birthDate = new Date(document.getElementById('birthDate').value);
+      const today = new Date();
+      const resultsDiv = document.getElementById('results');
+
+      if (!birthDate.getTime()) {
+        resultsDiv.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">Please enter a valid date.</div>`;
+        resultsDiv.classList.remove('hidden');
+        return;
+      }
+
+      // Core Features
+      const ageInMilliseconds = today - birthDate;
+      const ageInYears = Math.floor(ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000));
+      const ageInMonths = Math.floor(ageInYears * 12);
+      const ageInDays = Math.floor(ageInMilliseconds / (24 * 60 * 60 * 1000));
+      const ageInHours = Math.floor(ageInMilliseconds / (60 * 60 * 1000));
+      const ageInMinutes = Math.floor(ageInMilliseconds / (60 * 1000));
+      const ageInSeconds = Math.floor(ageInMilliseconds / 1000);
+
+      // Next Birthday
+      const nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+      if (nextBirthday < today) {
+        nextBirthday.setFullYear(today.getFullYear() + 1);
+      }
+      const daysLeft = Math.ceil((nextBirthday - today) / (1000 * 60 * 60 * 24));
+
+      // Day of the Week
+      const dayOfWeek = birthDate.toLocaleString('en-US', { weekday: 'long' });
+
+      // Zodiac Sign
+      const zodiacSign = getZodiacSign(birthDate.getMonth() + 1, birthDate.getDate());
+
+      // Chinese Zodiac
+      const chineseZodiac = getChineseZodiac(birthDate.getFullYear());
+
+      // Life Progress
+      const lifeExpectancy = 80; // Default value
+      const lifeProgress = ((ageInYears / lifeExpectancy) * 100).toFixed(2);
+
+      // Total Weeks and Days Lived
+      const totalWeeks = Math.floor(ageInDays / 7);
+
+      // Display Results
+      resultsDiv.innerHTML = `
+        <div class="space-y-6">
+          <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-blue-800">Your Age</h2>
+            <p class="text-gray-700 mt-2">You are <span class="font-semibold">${ageInYears} years</span>, <span class="font-semibold">${ageInMonths} months</span>, and <span class="font-semibold">${ageInDays} days</span> old.</p>
+            <p class="text-gray-700">That's <span class="font-semibold">${ageInHours} hours</span>, <span class="font-semibold">${ageInMinutes} minutes</span>, or <span class="font-semibold">${ageInSeconds} seconds</span>!</p>
+          </div>
+
+          <div class="bg-purple-50 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-purple-800">Next Birthday</h2>
+            <p class="text-gray-700 mt-2">Your next birthday is in <span class="font-semibold">${daysLeft} days</span>.</p>
+          </div>
+
+          <div class="bg-green-50 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-green-800">Birthday Details</h2>
+            <p class="text-gray-700 mt-2">You were born on a <span class="font-semibold">${dayOfWeek}</span>.</p>
+            <p class="text-gray-700">Your zodiac sign is <span class="font-semibold">${zodiacSign}</span>.</p>
+            <p class="text-gray-700">Your Chinese zodiac sign is <span class="font-semibold">${chineseZodiac}</span>.</p>
+          </div>
+
+          <div class="bg-yellow-50 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-yellow-800">Life Progress</h2>
+            <p class="text-gray-700 mt-2">You have completed <span class="font-semibold">${lifeProgress}%</span> of an average lifespan (${lifeExpectancy} years).</p>
+            <div class="mt-4 bg-white rounded-full h-4 overflow-hidden">
+              <div class="bg-blue-600 h-full rounded-full" style="width: ${lifeProgress}%"></div>
+            </div>
+          </div>
+
+          <div class="bg-pink-50 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-pink-800">Total Time Lived</h2>
+            <p class="text-gray-700 mt-2">You have lived <span class="font-semibold">${totalWeeks} weeks</span> or <span class="font-semibold">${ageInDays} days</span>.</p>
+          </div>
+        </div>
+      `;
+      resultsDiv.classList.remove('hidden');
+    });
+
+    // Helper Functions
+    function getZodiacSign(month, day) {
+      if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return "Aquarius";
+      if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) return "Pisces";
+      if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return "Aries";
+      if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return "Taurus";
+      if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return "Gemini";
+      if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return "Cancer";
+      if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return "Leo";
+      if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return "Virgo";
+      if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return "Libra";
+      if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return "Scorpio";
+      if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return "Sagittarius";
+      if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return "Capricorn";
+      return "Unknown";
+    }
+
+    function getChineseZodiac(year) {
+      const zodiacs = ["Monkey", "Rooster", "Dog", "Pig", "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat"];
+      return zodiacs[year % 12];
+    }
+  </script>
+</body>
+</html>
